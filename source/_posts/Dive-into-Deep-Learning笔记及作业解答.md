@@ -155,9 +155,31 @@ tensor([[       nan, 1.2750e+05],
 $$
 (\mathbf{A}+\mathbf{A}^\text{T})_{ij}=\mathbf{A}_{ij}+\mathbf{A}^\text{T}_{ij}=\mathbf{A}^\text{T}_{ji}+\mathbf{A}_{ji}=(\mathbf{A}+\mathbf{A}^\text{T})_{ji}
 $$
-### 练习4
+### 练习4 与 练习5
 > 本节中定义了形状$(2,3,4)$的张量X。len(X)的输出结果是什么？
+> 对于任意形状的张量X,len(X)是否总是对应于X特定轴的长度?这个轴是什么?
 
-输出X的第0维长度
+X的第0轴长度
 
-### 练习5
+### 练习6
+> 运行A/A.sum(axis=1)，看看会发生什么。请分析一下原因？
+
+会输出：
+```python
+RuntimeError: The size of tensor a (4) must match the size of tensor b (5) at non-singleton dimension 1
+```
+因为A.sum(axis=1)相较于A减少了第1轴，无法进行运算。
+
+### 练习7
+> 考虑一个具有形状$(2,3,4)$的张量，在轴0、1、2上的求和输出是什么形状?
+```python
+torch.Size([3,4])
+torch.Size([2,4])
+torch.Size([2,3])
+```
+
+### 练习8
+> 为linalg.norm函数提供3个或更多轴的张量，并观察其输出。对于任意形状的张量这个函数计算得到什么?
+
+所有元素平方和的平方根
+
