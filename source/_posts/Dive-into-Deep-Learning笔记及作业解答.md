@@ -7,13 +7,16 @@ cover: true
 toc: true
 mathjax: true
 tags:
--
+-CS
+-深度学习
+-习题解答
+-笔记
 date: 2023-01-30 18:41:07
 img:
 coverImg:
 password:
 summary: Dive into Deep Learning（动手学深度学习 https://zh.d2l.ai/index.html）的课程笔记与部分练习解答
-categories: 
+categories: CS
 ---
 # 2.预备知识
 
