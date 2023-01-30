@@ -7,17 +7,20 @@ cover: true
 toc: true
 mathjax: true
 tags:
-  - null
+-
 date: 2023-01-30 18:41:07
 img:
 coverImg:
 password:
 summary: Dive into Deep Learning（动手学深度学习 https://zh.d2l.ai/index.html）的课程笔记与部分练习解答
-categories:
+categories: 
 ---
 # 2.预备知识
+
 ## 2.1数据操作
+
 ### 练习1
+
 > 运行本节中的代码。运行本节中的代码。将本节中的条件语句X == Y更改为X < Y或X >  Y，然后看看你可以得到什么样的张量。
 ```python
   X = torch.arange(12, dtype=torch.float32).reshape((3,4))
@@ -28,7 +31,8 @@ categories:
 ```
 结果略
 
-### 联系2
+### 练习2
+
 > 用其他形状（例如三维张量）替换广播机制中按元素操作的两个张量。结果是否与预期相同？
 
   与预期结果相同
@@ -63,11 +67,14 @@ categories:
           [3, 4],
           [4, 5]]])
   ```
+
 ### 广播机制
 要求进行运算的两个张量满足：**相应维度的大小要么相同，要么其中有一个为1.**
 
 ## 2.2 数据预处理
+
 ### 练习1
+
 > 删除缺失值最多的列
 
 对于数据：
@@ -136,6 +143,7 @@ NumRooms	Price
 注：若想删去缺失值最多的行可以data.count(axis='index')改为data.count(axis='column')
 
 ### 练习2
+
 > 将预处理后的数据集转换为张量格式
 ```python
 import torch
@@ -149,17 +157,22 @@ tensor([[       nan, 1.2750e+05],
 ```
 
 ## 2.3 线性代数
+
 ### 练习3
+
 > 给定任意方阵$\mathbf{A}$，$\mathbf{A}+\mathbf{A}^\text{T}$总是对称的吗？
 
 $$ (\mathbf{A}+\mathbf{A}^\text{T})_{ij}=\mathbf{A}_{ij}+\mathbf{A}^\text{T}_{ij}=\mathbf{A}^\text{T}_{ji}+\mathbf{A}_{ji}=(\mathbf{A}+\mathbf{A}^\text{T})_{ji} $$
+
 ### 练习4 与 练习5
+
 > 本节中定义了形状$(2,3,4)$的张量X。len(X)的输出结果是什么？
 > 对于任意形状的张量X,len(X)是否总是对应于X特定轴的长度?这个轴是什么?
 
 X的第0轴长度
 
 ### 练习6
+
 > 运行A/A.sum(axis=1)，看看会发生什么。请分析一下原因？
 
 会输出：
@@ -169,6 +182,7 @@ RuntimeError: The size of tensor a (4) must match the size of tensor b (5) at no
 因为A.sum(axis=1)相较于A减少了第1轴，无法进行运算。
 
 ### 练习7
+
 > 考虑一个具有形状$(2,3,4)$的张量，在轴0、1、2上的求和输出是什么形状?
 ```python
 torch.Size([3,4])
@@ -177,6 +191,7 @@ torch.Size([2,3])
 ```
 
 ### 练习8
+
 > 为linalg.norm函数提供3个或更多轴的张量，并观察其输出。对于任意形状的张量这个函数计算得到什么?
 
 所有元素平方和的平方根
