@@ -50,7 +50,11 @@
 
     <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
 
-<meta name="generator" content="Hexo 6.3.0"></head>
+<!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head>
 
 
 <body>
@@ -315,12 +319,37 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/CS/">
+                                <span class="chip bg-color">CS</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                <span class="chip bg-color">深度学习</span>
+                            </a>
+                        
+                            <a href="/tags/%E4%B9%A0%E9%A2%98%E8%A7%A3%E7%AD%94/">
+                                <span class="chip bg-color">习题解答</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                <span class="chip bg-color">笔记</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/CS/" class="post-category">
+                                CS
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -338,7 +367,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    889
+                    885
                 </div>
                 
 
@@ -363,44 +392,48 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="2-预备知识"><a href="#2-预备知识" class="headerlink" title="2.预备知识"></a>2.预备知识</h1><h2 id="2-1数据操作"><a href="#2-1数据操作" class="headerlink" title="2.1数据操作"></a>2.1数据操作</h2><h3 id="练习1"><a href="#练习1" class="headerlink" title="练习1"></a>练习1</h3><blockquote>
-<p>运行本节中的代码。运行本节中的代码。将本节中的条件语句X &#x3D;&#x3D; Y更改为X &lt; Y或X &gt;  Y，然后看看你可以得到什么样的张量。</p>
-</blockquote>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">X <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>float32<span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+                <h1 id="预备知识">2.预备知识</h1>
+<h2 id="数据操作">2.1数据操作</h2>
+<h3 id="练习1">练习1</h3>
+<blockquote>
+<p>运行本节中的代码。运行本节中的代码。将本节中的条件语句X == Y更改为X
+&lt; Y或X &gt; Y，然后看看你可以得到什么样的张量。 <pre class="line-numbers language-python" data-language="python"><code class="language-python">X <span class="token operator">=</span> torch<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>float32<span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 Y <span class="token operator">=</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">2.0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">X <span class="token operator">></span> Y<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>结果略</p>
-<h3 id="联系2"><a href="#联系2" class="headerlink" title="联系2"></a>联系2</h3><blockquote>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">X <span class="token operator">></span> Y<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre> 结果略</p>
+</blockquote>
+<h3 id="练习2">练习2</h3>
+<blockquote>
 <p>用其他形状（例如三维张量）替换广播机制中按元素操作的两个张量。结果是否与预期相同？</p>
 </blockquote>
-<p>  与预期结果相同</p>
-<p>  运行<br>  <pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<p>与预期结果相同</p>
+<p>运行 <pre class="line-numbers language-python" data-language="python"><code class="language-python">a <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
 b <span class="token operator">=</span> np<span class="token punctuation">.</span>arange<span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">.</span>reshape<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span>
-a<span class="token punctuation">,</span> b<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre><br>  输出为:<br>  <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">(</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+a<span class="token punctuation">,</span> b<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre> 输出为: <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token punctuation">(</span>tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
           <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
           <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
 
 tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 
-        <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre><br>  再运行<br>  <pre class="line-numbers language-python" data-language="python"><code class="language-python">a<span class="token operator">+</span>b<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre><br>  结果为：<br>  <pre class="line-numbers language-python" data-language="python"><code class="language-python">tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+        <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre> 再运行 <pre class="line-numbers language-python" data-language="python"><code class="language-python">a<span class="token operator">+</span>b<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+结果为： <pre class="line-numbers language-python" data-language="python"><code class="language-python">tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
         <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
         <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
 
         <span class="token punctuation">[</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
         <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
         <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
-<h3 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h3><p>要求进行运算的两个张量满足：<strong>相应维度的大小要么相同，要么其中有一个为1.</strong></p>
-<h2 id="2-2-数据预处理"><a href="#2-2-数据预处理" class="headerlink" title="2.2 数据预处理"></a>2.2 数据预处理</h2><h3 id="练习1-1"><a href="#练习1-1" class="headerlink" title="练习1"></a>练习1</h3><blockquote>
+<h3 id="广播机制">广播机制</h3>
+<p>要求进行运算的两个张量满足：<strong>相应维度的大小要么相同，要么其中有一个为1.</strong></p>
+<h2 id="数据预处理">2.2 数据预处理</h2>
+<h3 id="练习1-1">练习1</h3>
+<blockquote>
 <p>删除缺失值最多的列</p>
 </blockquote>
-<p>对于数据：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">   NumRooms Alley   Price
+<p>对于数据： <pre class="line-numbers language-python" data-language="python"><code class="language-python">   NumRooms Alley   Price
 <span class="token number">0</span>       NaN  Pave  <span class="token number">127500</span>
 <span class="token number">1</span>       <span class="token number">2.0</span>   NaN  <span class="token number">106000</span>
 <span class="token number">2</span>       <span class="token number">4.0</span>   NaN  <span class="token number">178100</span>
-<span class="token number">3</span>       NaN   NaN  <span class="token number">140000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>方案1：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#判断是否缺少值</span>
+<span class="token number">3</span>       NaN   NaN  <span class="token number">140000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre> 方案1： <pre class="line-numbers language-python" data-language="python"><code class="language-python">data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#判断是否缺少值</span>
 <span class="token comment"># 输出为</span>
 NumRooms	Alley	Price
 <span class="token number">0</span>	<span class="token boolean">True</span>	<span class="token boolean">False</span>	<span class="token boolean">False</span>
@@ -426,9 +459,8 @@ NumRooms	Price
 <span class="token number">1</span>	<span class="token number">2.0</span>	<span class="token number">106000</span>
 <span class="token number">2</span>	<span class="token number">4.0</span>	<span class="token number">178100</span>
 <span class="token number">3</span>	NaN	<span class="token number">140000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>注：若想删去缺失值最多的行可以data.sum()改为data.sum(axis&#x3D;1)</p>
-<p>方案2：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">data<span class="token punctuation">.</span>count<span class="token punctuation">(</span>axis<span class="token operator">=</span><span class="token string">'index'</span><span class="token punctuation">)</span> <span class="token comment">#按列得到非缺失值的个数，</span>
+注：若想删去缺失值最多的行可以data.sum()改为data.sum(axis=1)</p>
+<p>方案2： <pre class="line-numbers language-python" data-language="python"><code class="language-python">data<span class="token punctuation">.</span>count<span class="token punctuation">(</span>axis<span class="token operator">=</span><span class="token string">'index'</span><span class="token punctuation">)</span> <span class="token comment">#按列得到非缺失值的个数，</span>
 <span class="token comment">#输出为</span>
 NumRooms    <span class="token number">2</span>
 Alley       <span class="token number">1</span>
@@ -449,41 +481,50 @@ NumRooms	Price
 <span class="token number">1</span>	<span class="token number">2.0</span>	<span class="token number">106000</span>
 <span class="token number">2</span>	<span class="token number">4.0</span>	<span class="token number">178100</span>
 <span class="token number">3</span>	NaN	<span class="token number">140000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>注：若想删去缺失值最多的行可以data.count(axis&#x3D;’index’)改为data.count(axis&#x3D;’column’)</p>
-<h3 id="练习2"><a href="#练习2" class="headerlink" title="练习2"></a>练习2</h3><blockquote>
-<p>将预处理后的数据集转换为张量格式</p>
-</blockquote>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
+注：若想删去缺失值最多的行可以data.count(axis='index')改为data.count(axis='column')</p>
+<h3 id="练习2-1">练习2</h3>
+<blockquote>
+<p>将预处理后的数据集转换为张量格式 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">import</span> torch
 a <span class="token operator">=</span> torch<span class="token punctuation">.</span>tensor<span class="token punctuation">(</span>data<span class="token punctuation">.</span>values<span class="token punctuation">)</span>
 a
 <span class="token comment">#输出为</span>
 tensor<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token punctuation">[</span>       nan<span class="token punctuation">,</span> <span class="token number">1.2750e+05</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
       <span class="token punctuation">[</span><span class="token number">2.0000e+00</span><span class="token punctuation">,</span> <span class="token number">1.0600e+05</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
       <span class="token punctuation">[</span><span class="token number">4.0000e+00</span><span class="token punctuation">,</span> <span class="token number">1.7810e+05</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
-      <span class="token punctuation">[</span>       nan<span class="token punctuation">,</span> <span class="token number">1.4000e+05</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>float64<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-
-<h2 id="2-3-线性代数"><a href="#2-3-线性代数" class="headerlink" title="2.3 线性代数"></a>2.3 线性代数</h2><h3 id="练习3"><a href="#练习3" class="headerlink" title="练习3"></a>练习3</h3><blockquote>
-<p>给定任意方阵$\mathbf{A}$，$\mathbf{A}+\mathbf{A}^\text{T}$总是对称的吗？</p>
+      <span class="token punctuation">[</span>       nan<span class="token punctuation">,</span> <span class="token number">1.4000e+05</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>float64<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></p>
 </blockquote>
-<p>$$<br>(\mathbf{A}+\mathbf{A}^\text{T})<em>{ij}&#x3D;\mathbf{A}</em>{ij}+\mathbf{A}^\text{T}<em>{ij}&#x3D;\mathbf{A}^\text{T}</em>{ji}+\mathbf{A}<em>{ji}&#x3D;(\mathbf{A}+\mathbf{A}^\text{T})</em>{ji}<br>$$</p>
-<h3 id="练习4-与-练习5"><a href="#练习4-与-练习5" class="headerlink" title="练习4 与 练习5"></a>练习4 与 练习5</h3><blockquote>
-<p>本节中定义了形状$(2,3,4)$的张量X。len(X)的输出结果是什么？<br>对于任意形状的张量X,len(X)是否总是对应于X特定轴的长度?这个轴是什么?</p>
+<h2 id="线性代数">2.3 线性代数</h2>
+<h3 id="练习3">练习3</h3>
+<blockquote>
+<p>给定任意方阵<span class="math inline">\(\mathbf{A}\)</span>，<span
+class="math inline">\(\mathbf{A}+\mathbf{A}^\text{T}\)</span>总是对称的吗？</p>
+</blockquote>
+<p><span class="math display">\[
+(\mathbf{A}+\mathbf{A}^\text{T})_{ij}=\mathbf{A}_{ij}+\mathbf{A}^\text{T}_{ij}=\mathbf{A}^\text{T}_{ji}+\mathbf{A}_{ji}=(\mathbf{A}+\mathbf{A}^\text{T})_{ji}
+\]</span></p>
+<h3 id="练习4-与-练习5">练习4 与 练习5</h3>
+<blockquote>
+<p>本节中定义了形状<span
+class="math inline">\((2,3,4)\)</span>的张量X。len(X)的输出结果是什么？
+对于任意形状的张量X,len(X)是否总是对应于X特定轴的长度?这个轴是什么?</p>
 </blockquote>
 <p>X的第0轴长度</p>
-<h3 id="练习6"><a href="#练习6" class="headerlink" title="练习6"></a>练习6</h3><blockquote>
-<p>运行A&#x2F;A.sum(axis&#x3D;1)，看看会发生什么。请分析一下原因？</p>
+<h3 id="练习6">练习6</h3>
+<blockquote>
+<p>运行A/A.sum(axis=1)，看看会发生什么。请分析一下原因？</p>
 </blockquote>
-<p>会输出：</p>
-<pre class="line-numbers language-python" data-language="python"><code class="language-python">RuntimeError<span class="token punctuation">:</span> The size of tensor a <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> must <span class="token keyword">match</span> the size of tensor b <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> at non<span class="token operator">-</span>singleton dimension <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>因为A.sum(axis&#x3D;1)相较于A减少了第1轴，无法进行运算。</p>
-<h3 id="练习7"><a href="#练习7" class="headerlink" title="练习7"></a>练习7</h3><blockquote>
-<p>考虑一个具有形状$(2,3,4)$的张量，在轴0、1、2上的求和输出是什么形状?</p>
-</blockquote>
+<p>会输出： <pre class="line-numbers language-python" data-language="python"><code class="language-python">RuntimeError<span class="token punctuation">:</span> The size of tensor a <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> must <span class="token keyword">match</span> the size of tensor b <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> at non<span class="token operator">-</span>singleton dimension <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+因为A.sum(axis=1)相较于A减少了第1轴，无法进行运算。</p>
+<h3 id="练习7">练习7</h3>
+<blockquote>
+<p>考虑一个具有形状<span
+class="math inline">\((2,3,4)\)</span>的张量，在轴0、1、2上的求和输出是什么形状?
 <pre class="line-numbers language-python" data-language="python"><code class="language-python">torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
 torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
-torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
-
-<h3 id="练习8"><a href="#练习8" class="headerlink" title="练习8"></a>练习8</h3><blockquote>
+torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre></p>
+</blockquote>
+<h3 id="练习8">练习8</h3>
+<blockquote>
 <p>为linalg.norm函数提供3个或更多轴的张量，并观察其输出。对于任意形状的张量这个函数计算得到什么?</p>
 </blockquote>
 <p>所有元素平方和的平方根</p>
@@ -500,7 +541,23 @@ torch<span class="token punctuation">.</span>Size<span class="token punctuation"
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/CS/">
+                                    <span class="chip bg-color">CS</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                                    <span class="chip bg-color">深度学习</span>
+                                </a>
+                            
+                                <a href="/tags/%E4%B9%A0%E9%A2%98%E8%A7%A3%E7%AD%94/">
+                                    <span class="chip bg-color">习题解答</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                                    <span class="chip bg-color">笔记</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -570,13 +627,37 @@ torch<span class="token punctuation">.</span>Size<span class="token punctuation"
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Shuitata
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CS/" class="post-category">
+                                    CS
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
 
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CS/">
+                        <span class="chip bg-color">CS</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%B9%A0%E9%A2%98%E8%A7%A3%E7%AD%94/">
+                        <span class="chip bg-color">习题解答</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
+                </div>
                 
             </div>
         </div>
@@ -584,22 +665,22 @@ torch<span class="token punctuation">.</span>Size<span class="token punctuation"
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
             </div>
             <div class="card">
-                <a href="/2023/01/30/hello-world/">
+                <a href="/2023/01/30/dive-into-deep-learning-bi-ji-ji-zuo-ye-jie-da/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="Dive into Deep Learning 笔记及作业解答">
                         
-                        <span class="card-title">Hello World</span>
+                        <span class="card-title">Dive into Deep Learning 笔记及作业解答</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            
+                            Dive into Deep Learning（动手学深度学习 https://zh.d2l.ai/index.html）的课程笔记与部分练习解答
                         
                     </div>
                     <div class="publish-info">
@@ -608,11 +689,36 @@ torch<span class="token punctuation">.</span>Size<span class="token punctuation"
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Shuitata
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CS/" class="post-category">
+                                    CS
+                                </a>
+                            
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/CS/">
+                        <span class="chip bg-color">CS</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">
+                        <span class="chip bg-color">深度学习</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%B9%A0%E9%A2%98%E8%A7%A3%E7%AD%94/">
+                        <span class="chip bg-color">习题解答</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AC%94%E8%AE%B0/">
+                        <span class="chip bg-color">笔记</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -816,7 +922,7 @@ torch<span class="token punctuation">.</span>Size<span class="token punctuation"
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">964</span>
+                        class="white-color">885</span>
             
             
             
@@ -1032,7 +1138,7 @@ $(function () {
             // 只在桌面版网页启用特效
             var windowWidth = $(window).width();
             if (windowWidth > 768) {
-                document.write('<script type="text/javascript" src="/libs/others/sakura.js"><\/script>');
+                document.write('<script type="text/javascript" src="/libs/others/sakura-half.js"><\/script>');
             }
         </script>
     
