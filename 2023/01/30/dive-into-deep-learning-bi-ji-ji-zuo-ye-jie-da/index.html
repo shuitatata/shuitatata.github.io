@@ -338,14 +338,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    228
+                    499
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    2 分
                 </div>
                 
 
@@ -401,7 +401,69 @@ a<span class="token punctuation">,</span> b<span aria-hidden="true" class="line-
          <span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
          <span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <h3 id="广播机制"><a href="#广播机制" class="headerlink" title="广播机制"></a>广播机制</h3><p>要求进行运算的两个张量满足：<strong>相应维度的大小要么相同，要么其中有一个为1.</strong></p>
+<h2 id="2-2-数据预处理"><a href="#2-2-数据预处理" class="headerlink" title="2.2 数据预处理"></a>2.2 数据预处理</h2><ol>
+<li><blockquote>
+<p>删除缺失值最多的列</p>
+</blockquote>
+</li>
+</ol>
+<p>对于数据：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">   NumRooms Alley   Price
+<span class="token number">0</span>       NaN  Pave  <span class="token number">127500</span>
+<span class="token number">1</span>       <span class="token number">2.0</span>   NaN  <span class="token number">106000</span>
+<span class="token number">2</span>       <span class="token number">4.0</span>   NaN  <span class="token number">178100</span>
+<span class="token number">3</span>       NaN   NaN  <span class="token number">140000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>方案1：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#判断是否缺少值</span>
+<span class="token comment"># 输出为</span>
+NumRooms	Alley	Price
+<span class="token number">0</span>	<span class="token boolean">True</span>	<span class="token boolean">False</span>	<span class="token boolean">False</span>
+<span class="token number">1</span>	<span class="token boolean">False</span>	<span class="token boolean">True</span>	<span class="token boolean">False</span>
+<span class="token number">2</span>	<span class="token boolean">False</span>	<span class="token boolean">True</span>	<span class="token boolean">False</span>
+<span class="token number">3</span>	<span class="token boolean">True</span>	<span class="token boolean">True</span>	<span class="token boolean">False</span>
 
+data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#计算列中缺失总数</span>
+<span class="token comment">#或者： data.isnull().sum(axis=0)</span>
+<span class="token comment">#输出为</span>
+NumRooms    <span class="token number">2</span>
+Alley       <span class="token number">3</span>
+Price       <span class="token number">0</span>
+
+data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>idxmax<span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">#得到最大缺失值的索引</span>
+<span class="token comment">#输出为</span>
+‘Alley’
+
+data<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>data<span class="token punctuation">.</span>isnull<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token builtin">sum</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span>idxmax<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment">#按列删除 ‘Alley’</span>
+<span class="token comment">#输出为</span>
+NumRooms	Price
+<span class="token number">0</span>	NaN	<span class="token number">127500</span>
+<span class="token number">1</span>	<span class="token number">2.0</span>	<span class="token number">106000</span>
+<span class="token number">2</span>	<span class="token number">4.0</span>	<span class="token number">178100</span>
+<span class="token number">3</span>	NaN	<span class="token number">140000</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>注：若想删去缺失值最多的行可以data.sum()改为data.sum(axis&#x3D;1)</p>
+<p>方案2：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">data<span class="token punctuation">.</span>count<span class="token punctuation">(</span>axis<span class="token operator">=</span><span class="token string">'index'</span><span class="token punctuation">)</span> <span class="token comment">#按列得到非缺失值的个数，</span>
+<span class="token comment">#输出为</span>
+NumRooms    <span class="token number">2</span>
+Alley       <span class="token number">1</span>
+Price       <span class="token number">4</span>
+
+data<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>data<span class="token punctuation">.</span>count<span class="token punctuation">(</span>axis<span class="token operator">=</span><span class="token string">'index'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>idxmin<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token comment">#不替换原data</span>
+<span class="token comment">#输出为</span>
+NumRooms	Price
+<span class="token number">0</span>	NaN	<span class="token number">127500</span>
+<span class="token number">1</span>	<span class="token number">2.0</span>	<span class="token number">106000</span>
+<span class="token number">2</span>	<span class="token number">4.0</span>	<span class="token number">178100</span>
+<span class="token number">3</span>	NaN	<span class="token number">140000</span>
+
+data<span class="token punctuation">.</span>drop<span class="token punctuation">(</span>data<span class="token punctuation">.</span>count<span class="token punctuation">(</span>axis<span class="token operator">=</span><span class="token string">'index'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>idxmin<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>axis<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">,</span>inplace<span class="token operator">=</span><span class="token boolean">True</span><span class="token punctuation">)</span> <span class="token comment">#替换原来的data</span>
+<span class="token comment">#输出为</span>
+NumRooms	Price
+<span class="token number">0</span>	NaN	<span class="token number">127500</span>
+<span class="token number">1</span>	<span class="token number">2.0</span>	<span class="token number">106000</span>
+<span class="token number">2</span>	<span class="token number">4.0</span>	<span class="token number">178100</span>
+<span class="token number">3</span>	NaN	<span class="token number">140000</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
                 
             </div>
             <hr/>
@@ -730,7 +792,7 @@ a<span class="token punctuation">,</span> b<span aria-hidden="true" class="line-
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">303</span>
+                        class="white-color">574</span>
             
             
             
