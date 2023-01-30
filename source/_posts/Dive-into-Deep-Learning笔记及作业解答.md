@@ -152,9 +152,7 @@ tensor([[       nan, 1.2750e+05],
 ### 练习3
 > 给定任意方阵$\mathbf{A}$，$\mathbf{A}+\mathbf{A}^\text{T}$总是对称的吗？
 
-$$
-(\mathbf{A}+\mathbf{A}^\text{T})_{ij}=\mathbf{A}_{ij}+\mathbf{A}^\text{T}_{ij}=\mathbf{A}^\text{T}_{ji}+\mathbf{A}_{ji}=(\mathbf{A}+\mathbf{A}^\text{T})_{ji}
-$$
+$$ (\mathbf{A}+\mathbf{A}^\text{T})_{ij}=\mathbf{A}_{ij}+\mathbf{A}^\text{T}_{ij}=\mathbf{A}^\text{T}_{ji}+\mathbf{A}_{ji}=(\mathbf{A}+\mathbf{A}^\text{T})_{ji} $$
 ### 练习4 与 练习5
 > 本节中定义了形状$(2,3,4)$的张量X。len(X)的输出结果是什么？
 > 对于任意形状的张量X,len(X)是否总是对应于X特定轴的长度?这个轴是什么?
