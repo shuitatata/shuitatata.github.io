@@ -338,14 +338,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    587
+                    889
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    4 分
                 </div>
                 
 
@@ -461,6 +461,32 @@ tensor<span class="token punctuation">(</span><span class="token punctuation">[<
       <span class="token punctuation">[</span><span class="token number">2.0000e+00</span><span class="token punctuation">,</span> <span class="token number">1.0600e+05</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
       <span class="token punctuation">[</span><span class="token number">4.0000e+00</span><span class="token punctuation">,</span> <span class="token number">1.7810e+05</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
       <span class="token punctuation">[</span>       nan<span class="token punctuation">,</span> <span class="token number">1.4000e+05</span><span class="token punctuation">]</span><span class="token punctuation">]</span><span class="token punctuation">,</span> dtype<span class="token operator">=</span>torch<span class="token punctuation">.</span>float64<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<h2 id="2-3-线性代数"><a href="#2-3-线性代数" class="headerlink" title="2.3 线性代数"></a>2.3 线性代数</h2><h3 id="练习3"><a href="#练习3" class="headerlink" title="练习3"></a>练习3</h3><blockquote>
+<p>给定任意方阵$\mathbf{A}$，$\mathbf{A}+\mathbf{A}^\text{T}$总是对称的吗？</p>
+</blockquote>
+<p>$$<br>(\mathbf{A}+\mathbf{A}^\text{T})<em>{ij}&#x3D;\mathbf{A}</em>{ij}+\mathbf{A}^\text{T}<em>{ij}&#x3D;\mathbf{A}^\text{T}</em>{ji}+\mathbf{A}<em>{ji}&#x3D;(\mathbf{A}+\mathbf{A}^\text{T})</em>{ji}<br>$$</p>
+<h3 id="练习4-与-练习5"><a href="#练习4-与-练习5" class="headerlink" title="练习4 与 练习5"></a>练习4 与 练习5</h3><blockquote>
+<p>本节中定义了形状$(2,3,4)$的张量X。len(X)的输出结果是什么？<br>对于任意形状的张量X,len(X)是否总是对应于X特定轴的长度?这个轴是什么?</p>
+</blockquote>
+<p>X的第0轴长度</p>
+<h3 id="练习6"><a href="#练习6" class="headerlink" title="练习6"></a>练习6</h3><blockquote>
+<p>运行A&#x2F;A.sum(axis&#x3D;1)，看看会发生什么。请分析一下原因？</p>
+</blockquote>
+<p>会输出：</p>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">RuntimeError<span class="token punctuation">:</span> The size of tensor a <span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span> must <span class="token keyword">match</span> the size of tensor b <span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span> at non<span class="token operator">-</span>singleton dimension <span class="token number">1</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>因为A.sum(axis&#x3D;1)相较于A减少了第1轴，无法进行运算。</p>
+<h3 id="练习7"><a href="#练习7" class="headerlink" title="练习7"></a>练习7</h3><blockquote>
+<p>考虑一个具有形状$(2,3,4)$的张量，在轴0、1、2上的求和输出是什么形状?</p>
+</blockquote>
+<pre class="line-numbers language-python" data-language="python"><code class="language-python">torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+torch<span class="token punctuation">.</span>Size<span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<h3 id="练习8"><a href="#练习8" class="headerlink" title="练习8"></a>练习8</h3><blockquote>
+<p>为linalg.norm函数提供3个或更多轴的张量，并观察其输出。对于任意形状的张量这个函数计算得到什么?</p>
+</blockquote>
+<p>所有元素平方和的平方根</p>
 
                 
             </div>
@@ -790,7 +816,7 @@ tensor<span class="token punctuation">(</span><span class="token punctuation">[<
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">662</span>
+                        class="white-color">964</span>
             
             
             
