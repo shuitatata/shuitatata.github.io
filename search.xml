@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>CS106L课程笔记</title>
+      <link href="/2023/02/14/cs106l-ke-cheng-bi-ji/"/>
+      <url>/2023/02/14/cs106l-ke-cheng-bi-ji/</url>
+      
+        <content type="html"><![CDATA[<h2 id="lecture01-streams">Lecture01 Streams</h2><h3 id="的坑">&gt;&gt;的坑</h3><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> dummyInt<span class="token punctuation">;</span>string dummyString<span class="token punctuation">;</span>cin <span class="token operator">>></span> dummyInt<span class="token punctuation">;</span><span class="token function">getline</span><span class="token punctuation">(</span>cin<span class="token punctuation">,</span> dummyString<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre><p>当输入为 <pre class="line-numbers language-none"><code class="language-none">3hello<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre> 时，会发现dummyString中并没有储存hello，这是因为&gt;&gt;(stream extractionoperator)在读入时会跳过空格(whitespace)和换行符(newline)，而getline()不会。&gt;&gt;从cin流读取3后，会遗留下一个换行符(newline)在cin中，其被getline()读取，getline()误以为这是用户输入完dummyString后敲入的回车，结束读入，导致dummyString中只有一个空字符串。</p><h3 id="writing-getinteger">Writing GetInteger</h3><p>借助于stringstream，我们可以很方便地完成string到int等类型的转换:<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">stringstream myConverter<span class="token punctuation">;</span><span class="token keyword">int</span> myInt<span class="token punctuation">;</span>string myString<span class="token punctuation">;</span><span class="token keyword">double</span> myDouble<span class="token punctuation">;</span>myConverter <span class="token operator">&lt;&lt;</span> <span class="token string">"137 Hello 2.71"</span><span class="token punctuation">;</span>myConverter <span class="token operator">>></span> myInt <span class="token operator">>></span> myString <span class="token operator">>></span> myDouble<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre> 我们可以类似地构造一个GerInteger()函数： <pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">GetInteger</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>  stringstream converter<span class="token punctuation">;</span>  converter <span class="token operator">&lt;&lt;</span> <span class="token function">GetLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token keyword">int</span> result<span class="token punctuation">;</span>  converter <span class="token operator">>></span> result<span class="token punctuation">;</span>  <span class="token keyword">return</span> result<span class="token punctuation">;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>但是这样的代码会遇到两个无法解决的情况: 1. 用户输入非int类型的值（eg.输入 hello） 2. 用户输入多于一个值（eg. 输入 3 hello）</p><p>对于第一种情况很好判断，我们只需要判断getline()后，cin的状态有没有变为fail。</p><p>而对于第二种情况，我们可以再次从cin中读取一个字符，如果cin的状态没有变为fail，说明cin中有多于一个值</p><p>代码如下:</p><pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">GetInteger</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>  <span class="token keyword">while</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">&#123;</span> <span class="token comment">//直到用户输入合法数据</span>    stringstream converter<span class="token punctuation">;</span>    converter <span class="token operator">&lt;&lt;</span> <span class="token function">GetLine</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>    <span class="token keyword">int</span> result<span class="token punctuation">;</span>    <span class="token keyword">if</span> <span class="token punctuation">(</span>converter <span class="token operator">>></span> result<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>      <span class="token keyword">char</span> remaining<span class="token punctuation">;</span>      <span class="token keyword">if</span> <span class="token punctuation">(</span>converter <span class="token operator">>></span> remaining<span class="token punctuation">)</span>        cout<span class="token operator">&lt;&lt;</span><span class="token string">"Unexpected character: "</span> <span class="token operator">&lt;&lt;</span> remaining <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">//多于一个值</span>      <span class="token keyword">else</span>        <span class="token keyword">return</span> result<span class="token punctuation">;</span>    <span class="token punctuation">&#125;</span> <span class="token keyword">else</span>      cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Please enter an integer."</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span> <span class="token comment">//类型不符</span>    cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Retry: "</span><span class="token punctuation">;</span>  <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> CS </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 笔记 </tag>
+            
+            <tag> cpp </tag>
+            
+            <tag> 网课 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Dive into Deep Learning 笔记及作业解答</title>
       <link href="/2023/01/30/dive-into-deep-learning-bi-ji-ji-zuo-ye-jie-da/"/>
       <url>/2023/01/30/dive-into-deep-learning-bi-ji-ji-zuo-ye-jie-da/</url>
