@@ -363,14 +363,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    790
+                    956
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    3 分
+                    4 分
                 </div>
                 
 
@@ -441,8 +441,9 @@ myConverter <span class="token operator">>></span> myInt <span class="token oper
 <blockquote>
 <p>How do you write data to a file in C++</p>
 </blockquote>
-<p>ofstream fileStream("kzxsb.out"); fileStream &lt;&lt; "helloWorld"
-&lt;&lt; endl; return 0;</p>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp">ofstream <span class="token function">fileStream</span><span class="token punctuation">(</span><span class="token string">"kzxsb.out"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+fileStream <span class="token operator">&lt;&lt;</span> <span class="token string">"helloWorld"</span> <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 <blockquote>
 <p>What does the <em>setw</em> manipulator do? What does the
 <em>setfill</em> manipulator do? How do you use them?</p>
@@ -530,6 +531,41 @@ boolean value.</p>
     cout <span class="token operator">&lt;&lt;</span> <span class="token string">"Retry: "</span><span class="token punctuation">;</span>
   <span class="token punctuation">&#125;</span>
 <span class="token punctuation">&#125;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>Write a function <em>HasHexLetters</em> that accepts an <em>int</em>
+and returns whether or not that integer's hexadecimal representation
+contains letters.</p>
+</blockquote>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">bool</span> <span class="token function">HasHexLetters</span><span class="token punctuation">(</span><span class="token keyword">int</span> decNum<span class="token punctuation">)</span> <span class="token punctuation">&#123;</span>
+    stringstream conventer<span class="token punctuation">;</span>
+    conventer <span class="token operator">&lt;&lt;</span> hex <span class="token operator">&lt;&lt;</span> decNum<span class="token punctuation">;</span>
+
+    string hexNum<span class="token punctuation">;</span>
+    conventer <span class="token operator">>></span> hexNum<span class="token punctuation">;</span>
+
+    stringstream judgment<span class="token punctuation">;</span>
+    judgment <span class="token operator">&lt;&lt;</span> hexNum<span class="token punctuation">;</span>
+    judgment <span class="token operator">>></span> decNum<span class="token punctuation">;</span>
+    <span class="token keyword">return</span> judgment<span class="token punctuation">.</span><span class="token function">fail</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">&#125;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<blockquote>
+<p>Using the <em>setw</em> and <em>setfill</em> stream manipulators,
+write a function <em>DrawTriangle</em> that takes in an <em>int</em>
+corresponding to the height of the triangle and a <em>char</em>
+representing a character to print, then draws a triangle of the
+specified height using that character. The triangle should be aligned so
+that the bottom row starts at the beginning of its line.</p>
+</blockquote>
+<pre class="line-numbers language-cpp" data-language="cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">DrawTriangle</span><span class="token punctuation">(</span><span class="token keyword">int</span> height<span class="token punctuation">,</span> <span class="token keyword">char</span> c<span class="token punctuation">)</span>
+<span class="token punctuation">&#123;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">;</span> i<span class="token operator">&lt;=</span>height<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span>
+    <span class="token punctuation">&#123;</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token function">setw</span><span class="token punctuation">(</span>height<span class="token operator">-</span>i<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token function">setfill</span><span class="token punctuation">(</span><span class="token char">' '</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token function">setw</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token operator">*</span>i<span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token function">setfill</span><span class="token punctuation">(</span>c<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        cout <span class="token operator">&lt;&lt;</span> <span class="token function">setw</span><span class="token punctuation">(</span>height<span class="token operator">-</span>i<span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token function">setfill</span><span class="token punctuation">(</span><span class="token char">' '</span><span class="token punctuation">)</span> <span class="token operator">&lt;&lt;</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        cout<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token punctuation">&#125;</span>
+<span class="token punctuation">&#125;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
                 
             </div>
@@ -915,7 +951,7 @@ boolean value.</p>
             <br>
             
                 &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                        class="white-color">1.7k</span>
+                        class="white-color">1.8k</span>
             
             
             
